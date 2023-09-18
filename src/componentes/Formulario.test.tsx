@@ -11,7 +11,11 @@ import { RecoilRoot } from "recoil";
 
 test("quando o input esta vazio, novos participantes nao podem ser adicionados.", () => {
   // Renderizar o componente
-  render(<Formulario />);
+  render(
+    <RecoilRoot>
+      <Formulario />
+    </RecoilRoot>
+  );
 
   // Encontrar no DOM o input
   const input = screen.getByPlaceholderText(
@@ -52,4 +56,30 @@ test("adicionar um participante caso exista um nome preenchido", () => {
 
   // garantir que o input não tenha um valor
   expect(input).toHaveValue("");
+});
+
+test("nomes duplicados não podem ser adicionados na lista", () => {
+  render(
+    <RecoilRoot>
+      <Formulario />
+    </RecoilRoot>
+  );
+  const input = screen.getByPlaceholderText(
+    "Insira os nomes dos participantes"
+  );
+  const botao = screen.getByRole("button");
+  fireEvent.change(input, {
+    target: {
+      value: "Ana Catarina",
+    },
+  });
+  fireEvent.click(botao);
+  fireEvent.change(input, {
+    target: {
+      value: "Ana Catarina",
+    },
+  });
+  fireEvent.click(botao);
+  const mensagemErro = screen.getByRole("alert");
+  expect(mensagemErro.textContent).toBe("Nomes duplicados não são permitidos.");
 });
