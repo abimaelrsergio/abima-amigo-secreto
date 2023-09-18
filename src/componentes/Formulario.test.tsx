@@ -3,6 +3,10 @@ import { render, screen } from "@testing-library/react";
 import Formulario from "./Formulario";
 
 // Jest
+    // AAA (Arrange, Act and Assert).
+    // (ARRANGE) Arrumamos o cenário (por exemplo, renderizar um componente, buscamos componentes)
+    // (ACT) Agimos (realizamos clicks, definimos valores)
+    // (ASSERT) Afirmamos o que queremos (onde realizamos as expectativas)
 
 test("quando o input esta vazio, novos participantes nao podem ser adicionados.", () => {
   // Renderizar o componente
