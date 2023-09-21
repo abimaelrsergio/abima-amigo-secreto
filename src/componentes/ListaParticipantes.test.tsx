@@ -4,16 +4,16 @@ import { RecoilRoot } from "recoil";
 import ListaParticipantes from "./ListaParticipantes";
 import { useListaParticipantes } from "./state/hooks/useListaParticipantes";
 
-jest.mock('./state/hooks/useListaParticipantes', (() => {
+jest.mock("./state/hooks/useListaParticipantes", () => {
   return {
-    useListaParticipantes: jest.fn()
-  }
-}))
+    useListaParticipantes: jest.fn(),
+  };
+});
 
 describe("uma lista vazia de participantes", () => {
   beforeEach(() => {
-    (useListaParticipantes as jest.Mock).mockReturnValue([])
-  })
+    (useListaParticipantes as jest.Mock).mockReturnValue([]);
+  });
   test("deve ser renderizada sem elementos", () => {
     render(
       <RecoilRoot>
@@ -28,8 +28,8 @@ describe("uma lista vazia de participantes", () => {
 describe("uma lista preenchida de participantes", () => {
   const participantes = ["Ana", "Catarina"];
   beforeEach(() => {
-    (useListaParticipantes as jest.Mock).mockReturnValue(participantes)
-  })
+    (useListaParticipantes as jest.Mock).mockReturnValue(participantes);
+  });
   test("deve ser renderizada sem elementos", () => {
     render(
       <RecoilRoot>
