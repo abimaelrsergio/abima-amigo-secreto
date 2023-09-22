@@ -19,7 +19,7 @@ jest.mock("react-router-dom", () => {
   };
 });
 
-jest.mock("../state/hook/useSorteador", () => {
+jest.mock("./state/hooks/useSorteador", () => {
   return {
     useSorteador: () => mockSorteio,
   };
